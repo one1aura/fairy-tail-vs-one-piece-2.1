@@ -1,86 +1,507 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Fairy Tail vs One Piece 2.1 — Download</title>
-  <style>
-    body {
-      background: #0d0d0d;
-      color: white;
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      line-height: 1.6;
-    }
-    h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    h2 {
-      margin-top: 40px;
-      font-size: 26px;
-      border-left: 5px solid #6a00ff;
-      padding-left: 10px;
-    }
-    p {
-      font-size: 18px;
-      opacity: 0.9;
-    }
-    button {
-      background: #6a00ff;
-      border: none;
-      padding: 15px 30px;
-      font-size: 18px;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.2s;
-      margin-top: 20px;
-    }
-    button:hover {
-      background: #5200cc;
-    }
-    .download-box {
-      text-align: center;
-      margin-top: 30px;
-      margin-bottom: 40px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNTAX OVERRIDE</title>
+    <style>
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0f;
+            color: #00ff88;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* === ANIMATED BACKGROUND === */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                linear-gradient(45deg, #0a0a0f 25%, transparent 25%),
+                linear-gradient(-45deg, #0a0a0f 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #0a0a0f 75%),
+                linear-gradient(-45deg, transparent 75%, #0a0a0f 75%);
+            background-size: 60px 60px;
+            opacity: 0.3;
+            animation: gridMove 8s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* === HEADER === */
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 2px solid #00ff88;
+            background: rgba(10, 10, 15, 0.95);
+            position: relative;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88;
+            letter-spacing: 8px;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: none; opacity: 1; }
+            7% { transform: skew(-2deg, 1deg); opacity: 0.8; }
+            10% { transform: none; opacity: 1; }
+            27% { transform: skew(1deg, -1deg); opacity: 0.9; }
+            30% { transform: none; opacity: 1; }
+            52% { transform: skew(-1deg, 2deg); opacity: 0.7; }
+            55% { transform: none; opacity: 1; }
+            76% { transform: skew(2deg, -1deg); opacity: 0.9; }
+            79% { transform: none; opacity: 1; }
+        }
+
+        .subtitle {
+            color: #66ffaa;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        /* === NAVIGATION === */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem;
+            background: rgba(0, 255, 136, 0.05);
+            border-bottom: 1px solid #00ff8833;
+        }
+
+        nav a {
+            color: #00ff88;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+            text-shadow: 0 0 10px #00ff88;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00ff88;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* === MAIN CONTENT === */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            border: 1px solid #00ff8833;
+            background: rgba(0, 255, 136, 0.02);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, #00ff8810 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #88ffbb;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: #00ff88;
+            border: 2px solid #00ff88;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            background: #00ff88;
+            color: #0a0a0f;
+            box-shadow: 0 0 30px #00ff8866;
+        }
+
+        /* === FEATURES GRID === */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border: 1px solid #00ff8833;
+            background: rgba(0, 255, 136, 0.03);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #66ffaa;
+        }
+
+        .feature-card p {
+            color: #88ffbb;
+            line-height: 1.6;
+        }
+
+        .feature-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* === CODE DISPLAY === */
+        .code-display {
+            background: #0d0d1a;
+            border: 1px solid #00ff8833;
+            padding: 2rem;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .code-display pre {
+            color: #00ff88;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+
+        .code-display .comment {
+            color: #66ffaa;
+            opacity: 0.6;
+        }
+
+        .code-display .keyword {
+            color: #ff66aa;
+        }
+
+        .code-display .string {
+            color: #ffaa66;
+        }
+
+        .code-display .function {
+            color: #66aaff;
+        }
+
+        /* === TERMINAL === */
+        .terminal {
+            background: #0d0d1a;
+            border: 1px solid #00ff88;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-family: 'Courier New', monospace;
+            min-height: 200px;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #00ff8833;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff4444;
+        }
+
+        .terminal-dot:nth-child(2) { background: #ffaa44; }
+        .terminal-dot:nth-child(3) { background: #44ff44; }
+
+        .terminal-output {
+            color: #00ff88;
+            line-height: 1.8;
+        }
+
+        .terminal-input {
+            color: #66ffaa;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* === FOOTER === */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #00ff8833;
+            background: rgba(10, 10, 15, 0.95);
+            color: #66ffaa;
+            opacity: 0.7;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .logo { font-size: 2rem; }
+            nav { flex-direction: column; align-items: center; gap: 0.5rem; }
+            .hero h2 { font-size: 1.8rem; }
+            .features { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
+    <!-- Matrix Background -->
+    <div class="matrix-bg"></div>
 
-  <h1>Fairy Tail vs One Piece 2.1</h1>
+    <!-- Header -->
+    <header>
+        <div class="logo">SYNTAX OVERRIDE</div>
+        <div class="subtitle">// Roblox Script Engine v2.0 //</div>
+    </header>
 
-  <div class="download-box">
-    <a href="https://drive.google.com/uc?export=download&id=1Z1hLPM8yU5TyBTatG5QHgrIfjOumG1ca">
-      <button>Download Now (45 MB)</button>
-    </a>
-  </div>
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">[HOME]</a>
+        <a href="#scripts">[SCRIPTS]</a>
+        <a href="#docs">[DOCS]</a>
+        <a href="#community">[COMMUNITY]</a>
+        <a href="#about">[ABOUT]</a>
+    </nav>
 
-  <h2>Description</h2>
-  <p>
-    Fairy Tail vs One Piece is a crossover fighting game that brings together characters from two popular anime series: Fairy Tail and One Piece. In this game, players can choose their favorite heroes or villains from both universes and engage in dynamic, fast-paced battles.
-  </p>
-  <p>
-    The game features a variety of characters, each with unique moves and abilities inspired by their respective shows. Players can team up with others or fight in one-on-one combat, using special attacks and combos to defeat their opponents.
-  </p>
-  <p>
-    The game offers various modes, including story-based missions and multiplayer battles, allowing players to immerse themselves in a fantasy world where these two iconic series collide. The vibrant graphics and intense action make it a fun experience for fans of both anime franchises.
-  </p>
-  <p>
-    To run at optimal performance, you may need a flash-enabled browser (e.g. Chrome X).
-  </p>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <h2>>_ POWER YOUR ROBLOX EXPERIENCE</h2>
+            <p>Advanced script generation engine powered by SYNTAX OVERRIDE technology. Create, modify, and optimize Roblox Lua scripts with AI assistance.</p>
+            <button class="cta-button" onclick="showTerminal()">[INITIALIZE ENGINE]</button>
+        </section>
 
-  <h2>全网最新在线版：妖尾vs海贼2.1</h2>
-  <p>
-    为了以最佳性能运行，你可能需要一个支持 Flash 的浏览器（例如：Chrome X）。
-  </p>
+        <!-- Terminal -->
+        <div class="terminal" id="terminal">
+            <div class="terminal-header">
+                <div class="terminal-dot"></div>
+                <div class="terminal-dot"></div>
+                <div class="terminal-dot"></div>
+            </div>
+            <div class="terminal-output" id="terminalOutput">
+                > SYNTAX OVERRIDE v2.0 initialized...<br>
+                > Loading script database...<br>
+                > Ready for input.<br>
+                <span class="terminal-input">_</span>
+            </div>
+        </div>
 
-  <h2>Downloads</h2>
-  <p>✔ fairy-tail-vs-one-piece-2.1.zip — 45 MB</p>
-  <p>✔ fairy-tail-vs-one-piece-2.0.zip — 42 MB</p>
+        <!-- Features -->
+        <div class="features">
+            <div class="feature-card">
+                <span class="icon">⚡</span>
+                <h3>Instant Generation</h3>
+                <p>Generate complex Roblox scripts in seconds using our advanced AI engine. From simple tools to complex systems.</p>
+            </div>
 
+            <div class="feature-card">
+                <span class="icon">🛡️</span>
+                <h3>Error-Free Code</h3>
+                <p>Built-in syntax validation and optimization ensures your scripts run perfectly every time.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="icon">🔧</span>
+                <h3>Customizable</h3>
+                <p>Fine-tune generated scripts with our intuitive parameter system. Full control over every aspect.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="icon">📚</span>
+                <h3>Learning Mode</h3>
+                <p>Get detailed comments and explanations for every script generated. Perfect for learning Roblox Lua.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="icon">🚀</span>
+                <h3>Optimized Performance</h3>
+                <p>Scripts are optimized for minimal memory usage and maximum performance in Roblox.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="icon">🌐</span>
+                <h3>Community Driven</h3>
+                <p>Access thousands of community-created templates and share your own creations.</p>
+            </div>
+        </div>
+
+        <!-- Code Display -->
+        <div class="code-display">
+            <h3 style="margin-bottom: 1rem; color: #66ffaa;">// Generated Script Example</h3>
+            <pre>
+<span class="comment">--[[</span>
+<span class="comment">    SYNTAX OVERRIDE Generated Script</span>
+<span class="comment">    Type: Fly Script</span>
+<span class="comment">    Optimized: Yes</span>
+<span class="comment">]]</span>
+
+<span class="keyword">local</span> Players = game:GetService(<span class="string">"Players"</span>)
+<span class="keyword">local</span> player = Players.LocalPlayer
+<span class="keyword">local</span> character = player.Character
+
+<span class="keyword">local function</span> <span class="function">setupFly</span>()
+    <span class="comment">-- BodyGyro for stability</span>
+    <span class="keyword">local</span> bodyGyro = Instance.new(<span class="string">"BodyGyro"</span>)
+    bodyGyro.P = 9e4
+    bodyGyro.MaxTorque = Vector3.new(9e9, 9e9, 9e9)
+    bodyGyro.Parent = character.HumanoidRootPart
+    
+    <span class="comment">-- BodyVelocity for movement</span>
+    <span class="keyword">local</span> bodyVelocity = Instance.new(<span class="string">"BodyVelocity"</span>)
+    bodyVelocity.MaxForce = Vector3.new(9e9, 9e9, 9e9)
+    bodyVelocity.Parent = character.HumanoidRootPart
+<span class="keyword">end</span>
+
+<span class="function">setupFly</span>()
+            </pre>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>SYNTAX OVERRIDE © 2024 | Built with ❤️ for the Roblox Community</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Version 2.0.0 | Engine Status: ONLINE</p>
+    </footer>
+
+    <script>
+        // Terminal interaction
+        function showTerminal() {
+            const terminal = document.getElementById('terminal');
+            const output = document.getElementById('terminalOutput');
+            
+            terminal.style.borderColor = '#00ff88';
+            terminal.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.3)';
+            
+            // Simulate loading
+            let messages = [
+                '> Initializing SYNTAX OVERRIDE engine...',
+                '> Loading script database...',
+                '> Analyzing Roblox API...',
+                '> Generating optimized scripts...',
+                '> Ready for input.',
+                '<span class="terminal-input">_</span>'
+            ];
+            
+            let index = 0;
+            output.innerHTML = '';
+            
+            const interval = setInterval(() => {
+                if (index < messages.length) {
+                    output.innerHTML += messages[index] + '<br>';
+                    index++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 500);
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add glitch effect to logo on hover
+        const logo = document.querySelector('.logo');
+        logo.addEventListener('mouseenter', () => {
+            logo.style.animation = 'none';
+            logo.offsetHeight; // Trigger reflow
+            logo.style.animation = 'glitch 0.5s infinite';
+        });
+        logo.addEventListener('mouseleave', () => {
+            logo.style.animation = 'glitch 3s infinite';
+        });
+
+        // Initialize terminal on load
+        window.addEventListener('load', () => {
+            setTimeout(showTerminal, 1000);
+        });
+    </script>
 </body>
 </html>
