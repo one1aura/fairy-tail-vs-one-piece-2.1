@@ -1,26 +1,60 @@
-import requests
 
-groq_api_key = "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"
-groq_api_url = "https://api.groq.com/v1/chat"
+```html
 
-def send_message(message):
-    headers = {
-        "Authorization": f"Bearer {groq_api_key}",
-        "Content-Type": "application/json"
-    }
-    data = {"message": message}
-    try:
-        response = requests.post(groq_api_url, headers=headers, json=data)
-        response.raise_for_status()  # Raise an exception for 4xx or 5xx status codes
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error: {e}")
-        return None
+<!DOCTYPE html>
 
-# Example usage:
-message = "Hello, how are you?"
-response = send_message(message)
-if response:
-    print(response)
-else:
-    print("Failed to send message")
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Chatroom 🧠</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="chat-container">
+
+<header>
+
+<h1>🤖 AI Chatroom</h1>
+
+<p>Powered by Groq</p>
+
+</header>
+
+<div id="chat-box" class="chat-box"></div>
+
+<div class="input-area">
+
+<textarea id="user-input" placeholder="Type your message..." rows="2"></textarea>
+
+<button id="send-btn">Send ➤</button>
+
+</div>
+
+<div class="status-bar">
+
+<span id="status">Ready</span>
+
+<button id="clear-btn">Clear Chat</button>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
+
+```
+
+---
