@@ -1,0 +1,22 @@
+// JavaScript
+const groqApiKey = "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";
+const groqApiUrl = "https://api.groq.com/v1/chat";
+
+async function sendMessage(message) {
+    const headers = {
+        "Authorization": `Bearer ${groqApiKey}`,
+        "Content-Type": "application/json"
+    };
+    const data = { message };
+    const response = await fetch(groqApiUrl, {
+        method: "POST",
+        headers,
+        body: JSON.stringify(data)
+    });
+    const jsonData = await response.json();
+    return jsonData;
+}
+
+// Example usage:
+const message = "Hello, how are you?";
+sendMessage(message).then(response => console.log(response));
