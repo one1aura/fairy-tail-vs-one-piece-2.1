@@ -1,10 +1,10 @@
-html
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYNTAX OVERRIDE</title>
+    <title>SYNTAX OVERRIDE — Script Upload</title>
     <style>
         /* === RESET & BASE === */
         * {
@@ -190,6 +190,193 @@ html
             box-shadow: 0 0 30px #00ff8866;
         }
 
+        /* === UPLOAD SECTION === */
+        .upload-section {
+            border: 2px dashed #00ff8866;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            transition: all 0.3s;
+            background: rgba(0, 255, 136, 0.02);
+        }
+
+        .upload-section:hover {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .upload-section.dragover {
+            border-color: #66ffaa;
+            background: rgba(0, 255, 136, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .upload-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #66ffaa;
+        }
+
+        .upload-section p {
+            color: #88ffbb;
+            margin-bottom: 1.5rem;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-input-wrapper .file-label {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: #00ff88;
+            border: 2px solid #00ff88;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-input-wrapper .file-label:hover {
+            background: #00ff88;
+            color: #0a0a0f;
+            box-shadow: 0 0 30px #00ff8866;
+        }
+
+        /* === TERMINAL === */
+        .terminal {
+            background: #0d0d1a;
+            border: 1px solid #00ff88;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-family: 'Courier New', monospace;
+            min-height: 300px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .terminal::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .terminal::-webkit-scrollbar-track {
+            background: #0d0d1a;
+        }
+
+        .terminal::-webkit-scrollbar-thumb {
+            background: #00ff8844;
+            border-radius: 4px;
+        }
+
+        .terminal::-webkit-scrollbar-thumb:hover {
+            background: #00ff8866;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #00ff8833;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff4444;
+        }
+
+        .terminal-dot:nth-child(2) { background: #ffaa44; }
+        .terminal-dot:nth-child(3) { background: #44ff44; }
+
+        .terminal-output {
+            color: #00ff88;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .terminal-input {
+            color: #66ffaa;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* === SCRIPT LIST === */
+        .script-list {
+            margin: 2rem 0;
+        }
+
+        .script-list h3 {
+            color: #66ffaa;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .script-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #00ff8833;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .script-item:hover {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .script-item .script-name {
+            color: #00ff88;
+            font-size: 1rem;
+        }
+
+        .script-item .script-size {
+            color: #66ffaa;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .script-item .delete-btn {
+            background: transparent;
+            border: 1px solid #ff4444;
+            color: #ff4444;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s;
+        }
+
+        .script-item .delete-btn:hover {
+            background: #ff4444;
+            color: #0a0a0f;
+        }
+
         /* === FEATURES GRID === */
         .features {
             display: grid;
@@ -229,82 +416,6 @@ html
             display: block;
         }
 
-        /* === CODE DISPLAY === */
-        .code-display {
-            background: #0d0d1a;
-            border: 1px solid #00ff8833;
-            padding: 2rem;
-            margin: 3rem 0;
-            position: relative;
-        }
-
-        .code-display pre {
-            color: #00ff88;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.8;
-            overflow-x: auto;
-        }
-
-        .code-display .comment {
-            color: #66ffaa;
-            opacity: 0.6;
-        }
-
-        .code-display .keyword {
-            color: #ff66aa;
-        }
-
-        .code-display .string {
-            color: #ffaa66;
-        }
-
-        .code-display .function {
-            color: #66aaff;
-        }
-
-        /* === TERMINAL === */
-        .terminal {
-            background: #0d0d1a;
-            border: 1px solid #00ff88;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            font-family: 'Courier New', monospace;
-            min-height: 200px;
-        }
-
-        .terminal-header {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #00ff8833;
-        }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ff4444;
-        }
-
-        .terminal-dot:nth-child(2) { background: #ffaa44; }
-        .terminal-dot:nth-child(3) { background: #44ff44; }
-
-        .terminal-output {
-            color: #00ff88;
-            line-height: 1.8;
-        }
-
-        .terminal-input {
-            color: #66ffaa;
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
         /* === FOOTER === */
         footer {
             text-align: center;
@@ -321,6 +432,7 @@ html
             nav { flex-direction: column; align-items: center; gap: 0.5rem; }
             .hero h2 { font-size: 1.8rem; }
             .features { grid-template-columns: 1fr; }
+            .upload-section { padding: 2rem 1rem; }
         }
     </style>
 </head>
@@ -331,15 +443,15 @@ html
     <!-- Header -->
     <header>
         <div class="logo">SYNTAX OVERRIDE</div>
-        <div class="subtitle">// Roblox Script Engine v2.0 //</div>
+        <div class="subtitle">// Script Upload & Viewer v2.0 //</div>
     </header>
 
     <!-- Navigation -->
     <nav>
         <a href="#home">[HOME]</a>
+        <a href="#upload">[UPLOAD]</a>
         <a href="#scripts">[SCRIPTS]</a>
         <a href="#docs">[DOCS]</a>
-        <a href="#community">[COMMUNITY]</a>
         <a href="#about">[ABOUT]</a>
     </nav>
 
@@ -347,10 +459,21 @@ html
     <main>
         <!-- Hero Section -->
         <section class="hero" id="home">
-            <h2>>_ POWER YOUR ROBLOX EXPERIENCE</h2>
-            <p>Advanced script generation engine powered by SYNTAX OVERRIDE technology. Create, modify, and optimize Roblox Lua scripts with AI assistance.</p>
-            <button class="cta-button" onclick="showTerminal()">[INITIALIZE ENGINE]</button>
+            <h2>>_ UPLOAD & ANALYZE SCRIPTS</h2>
+            <p>Upload your Roblox Lua scripts and view them in the SYNTAX OVERRIDE terminal. Supports .lua and .txt files.</p>
+            <button class="cta-button" onclick="document.getElementById('fileInput').click()">[SELECT SCRIPT]</button>
         </section>
+
+        <!-- Upload Section -->
+        <div class="upload-section" id="upload">
+            <span class="upload-icon">📂</span>
+            <h3>Drag & Drop Your Script</h3>
+            <p>Supports .lua and .txt files (max 1MB)</p>
+            <div class="file-input-wrapper">
+                <input type="file" id="fileInput" accept=".lua,.txt" onchange="handleFileUpload(this.files[0])">
+                <span class="file-label">[BROWSE FILES]</span>
+            </div>
+        </div>
 
         <!-- Terminal -->
         <div class="terminal" id="terminal">
@@ -361,147 +484,60 @@ html
             </div>
             <div class="terminal-output" id="terminalOutput">
                 > SYNTAX OVERRIDE v2.0 initialized...<br>
-                > Loading script database...<br>
-                > Ready for input.<br>
+                > Ready for script upload.<br>
+                > Drag & drop or click "SELECT SCRIPT" to begin.<br>
                 <span class="terminal-input">_</span>
+            </div>
+        </div>
+
+        <!-- Script List -->
+        <div class="script-list" id="scriptList">
+            <h3>// Uploaded Scripts</h3>
+            <div id="scriptsContainer">
+                <p style="color: #66ffaa; opacity: 0.6;">No scripts uploaded yet.</p>
             </div>
         </div>
 
         <!-- Features -->
         <div class="features">
             <div class="feature-card">
-                <span class="icon">⚡</span>
-                <h3>Instant Generation</h3>
-                <p>Generate complex Roblox scripts in seconds using our advanced AI engine. From simple tools to complex systems.</p>
+                <span class="icon">📤</span>
+                <h3>Easy Upload</h3>
+                <p>Drag & drop or browse for .lua files. Instant preview in the terminal.</p>
             </div>
 
             <div class="feature-card">
-                <span class="icon">🛡️</span>
-                <h3>Error-Free Code</h3>
-                <p>Built-in syntax validation and optimization ensures your scripts run perfectly every time.</p>
+                <span class="icon">🔍</span>
+                <h3>Syntax Highlighting</h3>
+                <p>Automatic color coding for keywords, strings, functions, and comments.</p>
             </div>
 
             <div class="feature-card">
-                <span class="icon">🔧</span>
-                <h3>Customizable</h3>
-                <p>Fine-tune generated scripts with our intuitive parameter system. Full control over every aspect.</p>
+                <span class="icon">💾</span>
+                <h3>Local Storage</h3>
+                <p>Your uploaded scripts are saved locally. Revisit them anytime.</p>
             </div>
 
             <div class="feature-card">
-                <span class="icon">📚</span>
-                <h3>Learning Mode</h3>
-                <p>Get detailed comments and explanations for every script generated. Perfect for learning Roblox Lua.</p>
+                <span class="icon">📋</span>
+                <h3>Copy to Clipboard</h3>
+                <p>Click any script to copy its contents to your clipboard instantly.</p>
             </div>
 
             <div class="feature-card">
-                <span class="icon">🚀</span>
-                <h3>Optimized Performance</h3>
-                <p>Scripts are optimized for minimal memory usage and maximum performance in Roblox.</p>
+                <span class="icon">🗑️</span>
+                <h3>Manage Scripts</h3>
+                <p>Delete unwanted scripts with one click. Keep your library organized.</p>
             </div>
 
             <div class="feature-card">
-                <span class="icon">🌐</span>
-                <h3>Community Driven</h3>
-                <p>Access thousands of community-created templates and share your own creations.</p>
+                <span class="icon">🔒</span>
+                <h3>Private & Secure</h3>
+                <p>All scripts stay on your device. Nothing is uploaded to any server.</p>
             </div>
-        </div>
-
-        <!-- Code Display -->
-        <div class="code-display">
-            <h3 style="margin-bottom: 1rem; color: #66ffaa;">// Generated Script Example</h3>
-            <pre>
-<span class="comment">--[[</span>
-<span class="comment">    SYNTAX OVERRIDE Generated Script</span>
-<span class="comment">    Type: Fly Script</span>
-<span class="comment">    Optimized: Yes</span>
-<span class="comment">]]</span>
-
-<span class="keyword">local</span> Players = game:GetService(<span class="string">"Players"</span>)
-<span class="keyword">local</span> player = Players.LocalPlayer
-<span class="keyword">local</span> character = player.Character
-
-<span class="keyword">local function</span> <span class="function">setupFly</span>()
-    <span class="comment">-- BodyGyro for stability</span>
-    <span class="keyword">local</span> bodyGyro = Instance.new(<span class="string">"BodyGyro"</span>)
-    bodyGyro.P = 9e4
-    bodyGyro.MaxTorque = Vector3.new(9e9, 9e9, 9e9)
-    bodyGyro.Parent = character.HumanoidRootPart
-    
-    <span class="comment">-- BodyVelocity for movement</span>
-    <span class="keyword">local</span> bodyVelocity = Instance.new(<span class="string">"BodyVelocity"</span>)
-    bodyVelocity.MaxForce = Vector3.new(9e9, 9e9, 9e9)
-    bodyVelocity.Parent = character.HumanoidRootPart
-<span class="keyword">end</span>
-
-<span class="function">setupFly</span>()
-            </pre>
         </div>
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>SYNTAX OVERRIDE © 2024 | Built with ❤️ for the Roblox Community</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Version 2.0.0 | Engine Status: ONLINE</p>
-    </footer>
-
-    <script>
-        // Terminal interaction
-        function showTerminal() {
-            const terminal = document.getElementById('terminal');
-            const output = document.getElementById('terminalOutput');
-            
-            terminal.style.borderColor = '#00ff88';
-            terminal.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.3)';
-            
-            // Simulate loading
-            let messages = [
-                '> Initializing SYNTAX OVERRIDE engine...',
-                '> Loading script database...',
-                '> Analyzing Roblox API...',
-                '> Generating optimized scripts...',
-                '> Ready for input.',
-                '<span class="terminal-input">_</span>'
-            ];
-            
-            let index = 0;
-            output.innerHTML = '';
-            
-            const interval = setInterval(() => {
-                if (index < messages.length) {
-                    output.innerHTML += messages[index] + '<br>';
-                    index++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 500);
-        }
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Add glitch effect to logo on hover
-        const logo = document.querySelector('.logo');
-        logo.addEventListener('mouseenter', () => {
-            logo.style.animation = 'none';
-            logo.offsetHeight; // Trigger reflow
-            logo.style.animation = 'glitch 0.5s infinite';
-        });
-        logo.addEventListener('mouseleave', () => {
-            logo.style.animation = 'glitch 3s infinite';
-        });
-
-        // Initialize terminal on load
-        window.addEventListener('load', () => {
-            setTimeout(showTerminal, 1000);
-        });
-    </script>
-</body>
-</html>
+        <p>SYNTAX OVERRIDE
